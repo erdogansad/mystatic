@@ -1,3 +1,4 @@
+require("dotenv");
 const path = require("path");
 const express = require("express");
 const server = express();
@@ -18,4 +19,6 @@ server.all("*", (req, res, next) => (req.method === "GET" ? next() : res.status(
 server.use(express.static(dir));
 server.all("*", (_, res) => res.status(403).json({ error: "not found" }));
 
-module.exports = server;
+server.listen(process.env.PORT, function () {
+  console.log(`Listening on http://localhost:${process.env.PORT}/`);
+});
