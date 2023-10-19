@@ -7,7 +7,11 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const dir = path.join(__dirname, "public");
 
-server.use(helmet());
+server.use(
+  helmet({
+    crossOriginResourcePolicy: false,
+  })
+);
 server.use(express.json());
 
 server.use(cors());
